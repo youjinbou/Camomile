@@ -1,0 +1,11 @@
+tools/parse_unidata.byte
+tools/parse_uniset.byte
+tools/camomilecharmap.byte
+tools/parse_specialcasing.byte
+tools/parse_casefolding.byte
+tools/parse_scripts.byte
+tools/parse_allkeys.byte
+mappings/gen_mappings.byte
+tools/parse_age.byte
+tools/camomilelocaledef.byte
+tools/camomilestringprep.byte

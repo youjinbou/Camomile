@@ -1,0 +1,10 @@
+unidata.otarget
+prop.otarget
+core_derived_prop.otarget
+stringprep_tables.otarget
+database/case_folding.mar
+database/composition_exclusion.mar
+database/age.mar
+database/scripts.mar
+database/special_casing.mar
+database/allkeys.mar

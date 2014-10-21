@@ -41,6 +41,10 @@
 #load "camomile.cma"
 *)
 
+let cwd = Filename.current_dir_name;;
+let pwd = Filename.parent_dir_name;;
+let (//) = Filename.concat;;
+
 module Unimap = Unimap.Make(Camomileconfig)
 
 let escape_char = ref '\\'
@@ -183,49 +187,50 @@ let charmap cjk c =
 
 let main () =
   let found = ref [] in
+  let input_path = cwd // "charmaps"
+  and output_path = cwd // "mappings" in
   (try
-    let map = open_in "../charmaps/GB2312" in
+    let map = open_in @@ input_path // "GB2312" in
     header map;
     charmap CN map;
     found := CN :: !found
   with Sys_error _ -> ());
   (try
-    let map = open_in "../charmaps/ISO-8859-7" in
+    let map = open_in @@ input_path // "ISO-8859-7" in
     header map;
     charmap GR map;
     found := GR :: !found
   with Sys_error _ -> ());
   (try
-    let map = open_in "../charmaps/EUC-JP" in
+    let map = open_in @@ input_path // "EUC-JP" in
     header map;
     charmap JP map;
     found := JP :: !found
   with Sys_error _ -> ());
   (try
-    let map = open_in "../charmaps/EUC-KR" in
+    let map = open_in @@ input_path // "EUC-KR" in
     header map;
     charmap KO map;
     found := KO :: !found
   with Sys_error _ -> ());
   (try
-    let map = open_in "../charmaps/EUC-TW" in
+    let map = open_in @@ input_path // "EUC-TW" in
     header map;
     charmap TW map;
     found := TW :: !found
-  with Sys_error _ -> ());
+   with Sys_error _ -> ());
   if List.mem CN !found then
-    Database.write "." "mar" output_value "gb2312" (Unimap.rw_to_ro gb2312);
+    Database.write output_path "mar" output_value "gb2312" (Unimap.rw_to_ro gb2312);
   if List.mem GR !found then
-    Database.write "." "mar" output_value "iso88597" (Unimap.rw_to_ro iso88597);
+    Database.write output_path "mar" output_value "iso88597" (Unimap.rw_to_ro iso88597);
   if List.mem JP !found then begin
-    Database.write "." "mar" output_value "jisx0201" (Unimap.rw_to_ro jisx0201);
-    Database.write "." "mar" output_value "jisx0208" (Unimap.rw_to_ro jisx0208);
-    Database.write "." "mar" output_value "jisx0212" (Unimap.rw_to_ro jisx0212)
+    Database.write output_path "mar" output_value "jisx0201" (Unimap.rw_to_ro jisx0201);
+    Database.write output_path "mar" output_value "jisx0208" (Unimap.rw_to_ro jisx0208);
+    Database.write output_path "mar" output_value "jisx0212" (Unimap.rw_to_ro jisx0212)
   end;
   if List.mem KO !found then
-    Database.write "." "mar" output_value "ksc5601" (Unimap.rw_to_ro ksc5601);
+    Database.write output_path "mar" output_value "ksc5601" (Unimap.rw_to_ro ksc5601);
   if List.mem TW !found then
-    Database.write "." "mar" output_value "cns11643" (Unimap.rw_to_ro cns11643)
-
+    Database.write output_path "mar" output_value "cns11643" (Unimap.rw_to_ro cns11643)
 
 let _ = main ()

@@ -362,7 +362,7 @@ let main () =
     Database.write dir "mar" output_value key locale_info
   in
   (match data with
-    Table tbl -> Hashtbl.iter proc tbl
-  | _ -> failwith "Broken data.")
-    
+      Table tbl -> Hashtbl.iter proc tbl
+    | _ -> failwith "Broken data.")
+
 let _ = main ()

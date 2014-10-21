@@ -1,0 +1,6 @@
+"public"     : include
+"internal"   : include
+"lib"        : include
+<{mappings,tools}/*.ml> : use_bigarray, use_str
+<{mappings,tools}/*.cm{o,x}> : use_bigarray, use_str
+<{mappings,tools}/*.{byte,native}> : use_bigarray, use_str

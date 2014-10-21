@@ -37,7 +37,7 @@
 open Toolslib
 
 let parse_arg () =
-  let dir = ref "." in
+  let dir = ref Filename.current_dir_name in
   let file = ref None in
   let helptext =
     "camomilecharmap[.byte, .opt] -d outputpath file: 

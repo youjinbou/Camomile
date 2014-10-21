@@ -1,0 +1,11 @@
+tools/parse_unidata.native
+tools/parse_uniset.native
+tools/camomilecharmap.native
+tools/parse_specialcasing.native
+tools/parse_casefolding.native
+tools/parse_scripts.native
+tools/parse_allkeys.native
+mappings/gen_mappings.native
+tools/parse_age.native
+tools/camomilelocaledef.native
+tools/camomilestringprep.native

@@ -1,0 +1,2 @@
+<lib>: include
+<camomilelocaledef.{ml,cmo,cmx}>: pp(camlp4o)
